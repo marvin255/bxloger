@@ -152,7 +152,6 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
         }
 
         $return['SEVERITY'] = strtoupper($severity);
-        $return['TIMESTAMP_X'] = time();
         $return['USER_AGENT'] = $this->request
             ? $this->request->getUserAgent()
             : '';
