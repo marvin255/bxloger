@@ -41,14 +41,14 @@ class Composer
         $libFolder = self::getLibraryFolder($event, self::$vendor, self::$module);
         $libFolder .= '/' . self::$vendor . '.' . self::$module;
 
-        $phpPsrHtttpMessageFolder = self::getLibraryFolder($event, 'php-fig', 'log');
+        $phpPsrHtttpMessageFolder = self::getLibraryFolder($event, 'psr', 'log');
         $phpPsrHtttpMessageFolder .= '/Psr/Log';
 
         $modulesFolder = self::getModulesFolder($event);
 
         return [
             $libFolder => $modulesFolder . '/' . self::$vendor . '.' . self::$module,
-            $phpMailerFolder => $modulesFolder . '/' . self::$vendor . '.' . self::$module . '/psr_log',
+            $phpPsrHtttpMessageFolder => $modulesFolder . '/' . self::$vendor . '.' . self::$module . '/psr_log',
         ];
     }
 
