@@ -98,6 +98,13 @@ class marvin255_bxloger extends CModule
      */
     protected function getEventsList()
     {
-        return [];
+        return [
+            [
+                'FROM_MODULE_ID' => 'main',
+                'EVENT_TYPE' => 'OnAfterEpilog',
+                'TO_CLASS' => '\\marvin255\\bxloger\\EventManager',
+                'TO_CLASS' => 'onAfterEpilog',
+            ],
+        ];
     }
 }

@@ -17,4 +17,4 @@ if (!$customLoger = $event->getParameter('loger')) {
     $customLoger = new EventLog;
 }
 
-Log::setLoger($customLoger);
+Log::set($customLoger);
