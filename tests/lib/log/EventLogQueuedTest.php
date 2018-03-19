@@ -70,6 +70,13 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
             'REMOTE_ADDR' => $remoteAddr,
         ];
 
+        $request = $this->getMockBuilder('\\Bitrix\\Main\\HttpRequest')
+            ->setMethods(['getUserAgent', 'getRequestUri', 'getRemoteAddress'])
+            ->getMock();
+        $request->method('getUserAgent')->will($this->returnValue($userAgent));
+        $request->method('getRequestUri')->will($this->returnValue($requestUri));
+        $request->method('getRemoteAddress')->will($this->returnValue($remoteAddr));
+
         $sqlHelper = $this->getMockBuilder('\\Bitrix\\Main\\DB\\SqlHelper')
             ->setMethods(['prepareInsert'])
             ->getMock();
@@ -101,13 +108,6 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
 
                 return $return;
             }));
-
-        $request = $this->getMockBuilder('\\Bitrix\\Main\\HttpRequest')
-            ->setMethods(['getUserAgent', 'getRequestUri', 'getRemoteAddress'])
-            ->getMock();
-        $request->method('getUserAgent')->will($this->returnValue($userAgent));
-        $request->method('getRequestUri')->will($this->returnValue($requestUri));
-        $request->method('getRemoteAddress')->will($this->returnValue($remoteAddr));
 
         $log = new EventLogQueued($connection, $request);
         $log->changeQueueUsageStatus(false)->log(LogLevel::INFO, $message, $context);
@@ -136,6 +136,13 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
             'REMOTE_ADDR' => $remoteAddr,
         ];
 
+        $request = $this->getMockBuilder('\\Bitrix\\Main\\HttpRequest')
+            ->setMethods(['getUserAgent', 'getRequestUri', 'getRemoteAddress'])
+            ->getMock();
+        $request->method('getUserAgent')->will($this->returnValue($userAgent));
+        $request->method('getRequestUri')->will($this->returnValue($requestUri));
+        $request->method('getRemoteAddress')->will($this->returnValue($remoteAddr));
+
         $sqlHelper = $this->getMockBuilder('\\Bitrix\\Main\\DB\\SqlHelper')
             ->setMethods(['prepareInsert'])
             ->getMock();
@@ -167,13 +174,6 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
 
                 return $return;
             }));
-
-        $request = $this->getMockBuilder('\\Bitrix\\Main\\HttpRequest')
-            ->setMethods(['getUserAgent', 'getRequestUri', 'getRemoteAddress'])
-            ->getMock();
-        $request->method('getUserAgent')->will($this->returnValue($userAgent));
-        $request->method('getRequestUri')->will($this->returnValue($requestUri));
-        $request->method('getRemoteAddress')->will($this->returnValue($remoteAddr));
 
         $log = new EventLogQueued($connection, $request);
         $log->changeQueueUsageStatus(false)->$method($message, $context);
