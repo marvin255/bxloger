@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="tests/bootstrap.php"
+    colors="true"
+    beStrictAboutTestSize="true"
+    beStrictAboutTestsThatDoNotTestAnything="true">
+
+    <testsuites>
+        <testsuite name="Bxloger Test Suite">
+            <directory>tests/lib</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>marvin255.bxloger/lib</directory>
+            <exclude>
+                <file>marvin255.bxloger/lib/Autoloader.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

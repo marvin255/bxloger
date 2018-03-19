@@ -10,6 +10,7 @@
     },
     "autoload": {
         "psr-4": {
+            "marvin255\\bxloger\\": "marvin255.bxloger/lib/",
             "marvin255\\bxloger\\tests\\": "tests/lib/",
             "marvin255\\bxloger\\installer\\": "installer/"
         }
