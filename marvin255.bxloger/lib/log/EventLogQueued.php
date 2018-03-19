@@ -152,15 +152,9 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
         }
 
         $return['SEVERITY'] = strtoupper($severity);
-        $return['USER_AGENT'] = $this->request
-            ? $this->request->getUserAgent()
-            : '';
-        $return['REQUEST_URI'] = $this->request
-            ? $this->request->getRequestUri()
-            : '';
-        $return['REMOTE_ADDR'] = $this->request
-            ? $this->request->getRemoteAddress()
-            : '';
+        $return['USER_AGENT'] = $this->request ? $this->request->getUserAgent() : '';
+        $return['REQUEST_URI'] = $this->request ? $this->request->getRequestUri() : '';
+        $return['REMOTE_ADDR'] = $this->request ? $this->request->getRemoteAddress() : '';
         $return['DESCRIPTION'] = $description;
 
         if (empty($return['SITE_ID'])) {
