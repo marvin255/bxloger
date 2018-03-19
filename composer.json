@@ -1,0 +1,27 @@
+{
+    "name": "marvin255/bxloger",
+    "description": "",
+    "type": "library",
+    "keywords": ["php", "bitrix", "log", "psr"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "psr/log": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "marvin255\\bxloger\\tests\\": "tests/lib/",
+            "marvin255\\bxloger\\installer\\": "installer/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0",
+        "friendsofphp/php-cs-fixer": "~2.2"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/marvin255/bxloger"
+        }
+    ]
+}
