@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxhttpclient;
+namespace marvin255\bxloger;
 
 use InvalidArgumentException;
 
