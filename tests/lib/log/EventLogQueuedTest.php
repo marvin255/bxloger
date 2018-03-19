@@ -194,6 +194,7 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
         $log->changeQueueUsageStatus(true);
         $log->log(LogLevel::INFO, $message1, $context);
         $log->log(LogLevel::NOTICE, $message2, $context);
+        $log->flush();
     }
 
     protected function runTestingFor($method, $severity)
