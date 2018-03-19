@@ -199,6 +199,7 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
 
     protected function runTestingFor($method, $severity)
     {
+        $userId = mt_rand();
         $message = 'message_' . mt_rand();
         $context = [
             'AUDIT_TYPE_ID' => 'AUDIT_TYPE_ID_' . mt_rand(),
@@ -218,7 +219,14 @@ class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
             'USER_AGENT' => $userAgent,
             'REQUEST_URI' => $requestUri,
             'REMOTE_ADDR' => $remoteAddr,
+            'USER_ID' => $userId,
         ];
+
+        global $USER;
+        $USER = $this->getMockBuilder('\\CUser')
+            ->setMethods(['getId'])
+            ->getMock();
+        $USER->method('getId')->will($this->returnValue($userId));
 
         $request = $this->getMockBuilder('\\Bitrix\\Main\\HttpRequest')
             ->setMethods(['getUserAgent', 'getRequestUri', 'getRemoteAddress'])

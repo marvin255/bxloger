@@ -143,6 +143,7 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
     {
         $return = [];
 
+        global $USER;
         list($severity, $description, $context) = $queuItem;
 
         foreach ($this->tableFields as $fieldName) {
@@ -155,6 +156,7 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
         $return['USER_AGENT'] = $this->request ? $this->request->getUserAgent() : '';
         $return['REQUEST_URI'] = $this->request ? $this->request->getRequestUri() : '';
         $return['REMOTE_ADDR'] = $this->request ? $this->request->getRemoteAddress() : '';
+        $return['USER_ID'] = $USER ? $USER->getId() : '';
         $return['DESCRIPTION'] = $description;
 
         if (empty($return['SITE_ID'])) {
