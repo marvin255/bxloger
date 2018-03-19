@@ -1,7 +1,7 @@
 <?php
 
 use marvin255\bxloger\Autoloader;
-use marvin255\bxloger\Container;
+use marvin255\bxloger\Log;
 use marvin255\bxloger\log\EventLog;
 use Bitrix\Main\Event;
 
@@ -17,4 +17,4 @@ if (!$customLoger = $event->getParameter('loger')) {
     $customLoger = new EventLog;
 }
 
-Container::setLoger($customLoger);
+Log::setLoger($customLoger);

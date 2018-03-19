@@ -9,7 +9,7 @@ use Psr\Log\LoggerInterface;
  *
  * Служит контейнером для обработчика логов.
  */
-class Container
+class Log
 {
     /**
      * Объект для записи логов.
