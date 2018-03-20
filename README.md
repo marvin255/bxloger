@@ -1,8 +1,8 @@
-# Bxloger
+# Bxlogger
 
-[![Latest Stable Version](https://poser.pugx.org/marvin255/bxloger/v/stable.png)](https://packagist.org/packages/marvin255/bxloger)
-[![License](https://poser.pugx.org/marvin255/bxloger/license.svg)](https://packagist.org/packages/marvin255/bxloger)
-[![Build Status](https://travis-ci.org/marvin255/bxloger.svg?branch=master)](https://travis-ci.org/marvin255/bxloger)
+[![Latest Stable Version](https://poser.pugx.org/marvin255/bxlogger/v/stable.png)](https://packagist.org/packages/marvin255/bxlogger)
+[![License](https://poser.pugx.org/marvin255/bxlogger/license.svg)](https://packagist.org/packages/marvin255/bxlogger)
+[![Build Status](https://travis-ci.org/marvin255/bxlogger.svg?branch=master)](https://travis-ci.org/marvin255/bxlogger)
 
 PSR-3 совместимый логер для 1С-Битрикс "Управление сайтом".
 
@@ -23,7 +23,7 @@ PSR-3 совместимый логер для 1С-Битрикс "Управл�
 
     ```javascript
     "require": {
-        "marvin255/bxloger": "~1.0"
+        "marvin255/bxlogger": "~1.0"
     }
     ```
 
@@ -32,10 +32,10 @@ PSR-3 совместимый логер для 1С-Битрикс "Управл�
     ```javascript
     "scripts": {
         "post-install-cmd": [
-            "\\marvin255\\bxloger\\installer\\Composer::injectModule"
+            "\\marvin255\\bxlogger\\installer\\Composer::injectModule"
         ],
         "post-update-cmd": [
-            "\\marvin255\\bxloger\\installer\\Composer::injectModule"
+            "\\marvin255\\bxlogger\\installer\\Composer::injectModule"
         ]
     }
     ```
@@ -46,27 +46,27 @@ PSR-3 совместимый логер для 1С-Битрикс "Управл�
     composer update
     ```
 
-4. Если пункт 2 не выполнен, то скопируйте папку `vendor/marvin255/bxloger/marvin255.bxloger` в папку `local/modules` вашего проекта. А папку `vendor/phpmailer/phpmailer` в папку `local/modules/marvin255.bxloger/phpmailer`.
+4. Если пункт 2 не выполнен, то скопируйте папку `vendor/marvin255/bxlogger/marvin255.bxlogger` в папку `local/modules` вашего проекта. А папку `vendor/phpmailer/phpmailer` в папку `local/modules/marvin255.bxlogger/phpmailer`.
 
 5. Установите модуль в административном разделе 1С-Битрикс "Управление сайтом".
 
 **Обычная**
 
 1. Скачайте архив с репозиторием.
-2. Скопируйте папку `marvin255.bxloger` в папку `local/modules` вашего проекта. А папку `/vendor/psr/log/Psr/Log` в папку `local/modules/marvin255.bxloger/psr_log`.
+2. Скопируйте папку `marvin255.bxlogger` в папку `local/modules` вашего проекта. А папку `/vendor/psr/log/Psr/Log` в папку `local/modules/marvin255.bxlogger/psr_log`.
 3. Установите модуль в административном разделе 1С-Битрикс "Управление сайтом".
 
 
 
 ## Использование
 
-Внутри приложения объект лога доступен через контейнер [`marvin255\bxloger\Log`](https://github.com/marvin255/bxloger/blob/master/marvin255.bxloger/lib/Log.php):
+Внутри приложения объект лога доступен через контейнер [`marvin255\bxlogger\Log`](https://github.com/marvin255/bxlogger/blob/master/marvin255.bxlogger/lib/Log.php):
 
 ```php
-use Bitrix\Main\Loder;
-use marvin255\bxloger\Log;
+use Bitrix\Main\Loader;
+use marvin255\bxlogger\Log;
 
-Loder::includeModule('marvin255.bxloger');
+Loader::includeModule('marvin255.bxlogger');
 
 Log::get()->error('Error occured', ['context' => 'some context variable']);
 ```
@@ -81,11 +81,11 @@ Log::get()->error('Error occured', ['context' => 'some context variable']);
 use Bitrix\Main\EventManager;
 use Bitrix\Main\Event;
 
-EventManager::getInstance()->addEventHandler('marvin255.bxloger', 'createLoger', 'createLogerHandler');
-function createLogerHandler(Event $event)
+EventManager::getInstance()->addEventHandler('marvin255.bxlogger', 'createLogger', 'createLoggerHandler');
+function createLoggerHandler(Event $event)
 {
-    $event->setParameter('loger', new MyAwesomeLoger);
+    $event->setParameter('logger', new MyAwesomeLogger);
 }
 ```
 
-Для того, чтобы все заработало, класс `MyAwesomeLoger` должен реализовывать интерфейс [`\Psr\Log\LoggerInterface`](https://github.com/php-fig/log/blob/master/Psr/Log/LoggerInterface.php).
+Для того, чтобы все заработало, класс `MyAwesomeLogger` должен реализовывать интерфейс [`\Psr\Log\LoggerInterface`](https://github.com/php-fig/log/blob/master/Psr/Log/LoggerInterface.php).

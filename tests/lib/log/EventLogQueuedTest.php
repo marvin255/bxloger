@@ -1,11 +1,11 @@
 <?php
 
-namespace marvin255\bxloger\tests\log;
+namespace marvin255\bxlogger\tests\log;
 
-use marvin255\bxloger\log\EventLogQueued;
+use marvin255\bxlogger\log\EventLogQueued;
 use Psr\Log\LogLevel;
 
-class EventLogQueuedTest extends \marvin255\bxloger\tests\BaseCase
+class EventLogQueuedTest extends \marvin255\bxlogger\tests\BaseCase
 {
     public function testEmergency()
     {

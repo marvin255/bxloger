@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger\log;
+namespace marvin255\bxlogger\log;
 
 use Psr\Log\AbstractLogger;
 use Bitrix\Main\DB\Connection;
@@ -34,13 +34,10 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
     /**
      * @var array
      */
-    protected $tableFields = [
+    protected $contextFields = [
         'AUDIT_TYPE_ID',
         'MODULE_ID',
         'ITEM_ID',
-        'SITE_ID',
-        'USER_ID',
-        'GUEST_ID',
     ];
 
     /**
@@ -146,10 +143,10 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
         global $USER;
         list($severity, $description, $context) = $queuItem;
 
-        foreach ($this->tableFields as $fieldName) {
+        foreach ($this->contextFields as $fieldName) {
             $return[$fieldName] = isset($context[$fieldName])
                 ? $context[$fieldName]
-                : '';
+                : 'UNKNOWN';
         }
 
         $return['SEVERITY'] = strtoupper($severity);
@@ -158,9 +155,12 @@ class EventLogQueued extends AbstractLogger implements QueuedLoggerInterface
         $return['REMOTE_ADDR'] = $this->request ? $this->request->getRemoteAddress() : '';
         $return['USER_ID'] = $USER ? $USER->getId() : '';
         $return['DESCRIPTION'] = $description;
+        $return['SITE_ID'] = '';
 
-        if (empty($return['SITE_ID'])) {
-            $return['SITE_ID'] = defined('SITE_ID') ? SITE_ID : '';
+        if (!empty($context['SITE_ID'])) {
+            $return['SITE_ID'] = $context['SITE_ID'];
+        } elseif (defined('SITE_ID')) {
+            $return['SITE_ID'] = SITE_ID;
         }
 
         return $return;

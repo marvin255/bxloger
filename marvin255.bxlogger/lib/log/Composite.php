@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger\log;
+namespace marvin255\bxlogger\log;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
@@ -13,15 +13,15 @@ class Composite extends AbstractLogger implements QueuedLoggerInterface
     /**
      * @var array
      */
-    protected $logers = [];
+    protected $loggers = [];
 
     /**
      * @inheritdoc
      */
     public function log($level, $message, array $context = [])
     {
-        foreach ($this->logers as $loger) {
-            $loger->log($level, $message, $context);
+        foreach ($this->loggers as $logger) {
+            $logger->log($level, $message, $context);
         }
     }
 
@@ -30,9 +30,9 @@ class Composite extends AbstractLogger implements QueuedLoggerInterface
      */
     public function flush()
     {
-        foreach ($this->logers as $loger) {
-            if ($loger instanceof QueuedLoggerInterface) {
-                $loger->flush();
+        foreach ($this->loggers as $logger) {
+            if ($logger instanceof QueuedLoggerInterface) {
+                $logger->flush();
             }
         }
 
@@ -44,9 +44,9 @@ class Composite extends AbstractLogger implements QueuedLoggerInterface
      */
     public function changeQueueUsageStatus($isQueueSwitchedOn)
     {
-        foreach ($this->logers as $loger) {
-            if ($loger instanceof QueuedLoggerInterface) {
-                $loger->changeQueueUsageStatus($isQueueSwitchedOn);
+        foreach ($this->loggers as $logger) {
+            if ($logger instanceof QueuedLoggerInterface) {
+                $logger->changeQueueUsageStatus($isQueueSwitchedOn);
             }
         }
 
@@ -56,15 +56,15 @@ class Composite extends AbstractLogger implements QueuedLoggerInterface
     /**
      * Задает список логеров.
      *
-     * @param array $logers
+     * @param array $loggers
      *
-     * @return \marvin255\bxloger\log\Composite
+     * @return \marvin255\bxlogger\log\Composite
      */
-    public function setLogers(array $logers)
+    public function setLoggers(array $loggers)
     {
-        $this->logers = [];
-        foreach ($logers as $loger) {
-            $this->addLoger($loger);
+        $this->loggers = [];
+        foreach ($loggers as $logger) {
+            $this->addLogger($logger);
         }
 
         return $this;
@@ -73,13 +73,13 @@ class Composite extends AbstractLogger implements QueuedLoggerInterface
     /**
      * Добавляет логер к списку.
      *
-     * @param \Psr\Log\LoggerInterface $loger
+     * @param \Psr\Log\LoggerInterface $logger
      *
-     * @return \marvin255\bxloger\log\Composite
+     * @return \marvin255\bxlogger\log\Composite
      */
-    public function addLoger(LoggerInterface $loger)
+    public function addLogger(LoggerInterface $logger)
     {
-        $this->logers[] = $loger;
+        $this->loggers[] = $logger;
 
         return $this;
     }

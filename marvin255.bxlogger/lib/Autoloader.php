@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger;
+namespace marvin255\bxlogger;
 
 use InvalidArgumentException;
 

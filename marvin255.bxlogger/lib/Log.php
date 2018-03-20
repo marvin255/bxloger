@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger;
+namespace marvin255\bxlogger;
 
 use Psr\Log\LoggerInterface;
 
@@ -16,16 +16,16 @@ class Log
      *
      * @var \Psr\Log\LoggerInterface
      */
-    protected static $loger = null;
+    protected static $logger = null;
 
     /**
      * Задает контейнеру объект логера.
      *
-     * @param \Psr\Log\LoggerInterface $loger
+     * @param \Psr\Log\LoggerInterface $logger
      */
-    public static function set(LoggerInterface $loger)
+    public static function set(LoggerInterface $logger)
     {
-        self::$loger = $loger;
+        self::$logger = $logger;
     }
 
     /**
@@ -35,6 +35,6 @@ class Log
      */
     public static function get()
     {
-        return self::$loger;
+        return self::$logger;
     }
 }

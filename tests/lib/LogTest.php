@@ -1,18 +1,18 @@
 <?php
 
-namespace marvin255\bxloger\tests;
+namespace marvin255\bxlogger\tests;
 
-use marvin255\bxloger\Log;
+use marvin255\bxlogger\Log;
 use Psr\Log\LoggerInterface;
 
-class LogTest extends \marvin255\bxloger\tests\BaseCase
+class LogTest extends \marvin255\bxlogger\tests\BaseCase
 {
     public function testSetLogger()
     {
-        $loger = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger = $this->getMockBuilder(LoggerInterface::class)->getMock();
 
-        Log::set($loger);
+        Log::set($logger);
 
-        $this->assertSame($loger, Log::get());
+        $this->assertSame($logger, Log::get());
     }
 }

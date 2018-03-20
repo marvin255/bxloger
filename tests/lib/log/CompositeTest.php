@@ -1,13 +1,13 @@
 <?php
 
-namespace marvin255\bxloger\tests\log;
+namespace marvin255\bxlogger\tests\log;
 
-use marvin255\bxloger\log\Composite;
-use marvin255\bxloger\log\QueuedLoggerInterface;
+use marvin255\bxlogger\log\Composite;
+use marvin255\bxlogger\log\QueuedLoggerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
-class CompositeTest extends \marvin255\bxloger\tests\BaseCase
+class CompositeTest extends \marvin255\bxlogger\tests\BaseCase
 {
     public function testLog()
     {
@@ -19,21 +19,21 @@ class CompositeTest extends \marvin255\bxloger\tests\BaseCase
             'context_key_3_' . mt_rand() => 'context_value_3_' . mt_rand(),
         ];
 
-        $loger1 = $this->getMockBuilder(LoggerInterface::class)->getMock();
-        $loger1->expects($this->once())
+        $logger1 = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger1->expects($this->once())
             ->method('log')
             ->with($this->equalTo($level), $this->equalTo($message), $this->equalTo($context))
         ;
 
-        $loger2 = $this->getMockBuilder(LoggerInterface::class)->getMock();
-        $loger2->expects($this->once())
+        $logger2 = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger2->expects($this->once())
             ->method('log')
             ->with($this->equalTo($level), $this->equalTo($message), $this->equalTo($context))
         ;
 
         $composite = new Composite;
-        $composite->addLoger($loger1);
-        $composite->addLoger($loger2);
+        $composite->addLogger($logger1);
+        $composite->addLogger($logger2);
         $composite->log($level, $message, $context);
     }
 
@@ -47,14 +47,14 @@ class CompositeTest extends \marvin255\bxloger\tests\BaseCase
             'context_key_3_' . mt_rand() => 'context_value_3_' . mt_rand(),
         ];
 
-        $loger1 = $this->getMockBuilder(QueuedLoggerInterface::class)->getMock();
-        $loger1->expects($this->atLeastOnce())->method('flush');
+        $logger1 = $this->getMockBuilder(QueuedLoggerInterface::class)->getMock();
+        $logger1->expects($this->atLeastOnce())->method('flush');
 
-        $loger2 = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger2 = $this->getMockBuilder(LoggerInterface::class)->getMock();
 
         $composite = new Composite;
-        $composite->addLoger($loger1);
-        $composite->addLoger($loger2);
+        $composite->addLogger($logger1);
+        $composite->addLogger($logger2);
         $composite->flush();
     }
 
@@ -68,20 +68,20 @@ class CompositeTest extends \marvin255\bxloger\tests\BaseCase
             'context_key_3_' . mt_rand() => 'context_value_3_' . mt_rand(),
         ];
 
-        $loger1 = $this->getMockBuilder(QueuedLoggerInterface::class)->getMock();
-        $loger1->expects($this->atLeastOnce())
+        $logger1 = $this->getMockBuilder(QueuedLoggerInterface::class)->getMock();
+        $logger1->expects($this->atLeastOnce())
             ->method('changeQueueUsageStatus')
             ->with($this->equalTo(false));
 
-        $loger2 = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger2 = $this->getMockBuilder(LoggerInterface::class)->getMock();
 
         $composite = new Composite;
-        $composite->addLoger($loger1);
-        $composite->addLoger($loger2);
+        $composite->addLogger($logger1);
+        $composite->addLogger($logger2);
         $composite->changeQueueUsageStatus(false);
     }
 
-    public function testSetLogers()
+    public function testSetLoggers()
     {
         $level = LogLevel::ERROR;
         $message = 'message_' . mt_rand();
@@ -91,24 +91,24 @@ class CompositeTest extends \marvin255\bxloger\tests\BaseCase
             'context_key_3_' . mt_rand() => 'context_value_3_' . mt_rand(),
         ];
 
-        $loger1 = $this->getMockBuilder(LoggerInterface::class)->getMock();
-        $loger1->expects($this->never())->method('log');
+        $logger1 = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger1->expects($this->never())->method('log');
 
-        $loger2 = $this->getMockBuilder(QueuedLoggerInterface::class)->getMock();
-        $loger2->expects($this->once())
+        $logger2 = $this->getMockBuilder(QueuedLoggerInterface::class)->getMock();
+        $logger2->expects($this->once())
             ->method('log')
             ->with($this->equalTo($level), $this->equalTo($message), $this->equalTo($context))
         ;
 
-        $loger3 = $this->getMockBuilder(LoggerInterface::class)->getMock();
-        $loger3->expects($this->once())
+        $logger3 = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $logger3->expects($this->once())
             ->method('log')
             ->with($this->equalTo($level), $this->equalTo($message), $this->equalTo($context))
         ;
 
         $composite = new Composite;
-        $composite->addLoger($loger1);
-        $composite->setLogers([$loger2, $loger3]);
+        $composite->addLogger($logger1);
+        $composite->setLoggers([$logger2, $logger3]);
         $composite->log($level, $message, $context);
     }
 }

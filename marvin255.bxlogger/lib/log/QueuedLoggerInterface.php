@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger\log;
+namespace marvin255\bxlogger\log;
 
 use Psr\Log\LoggerInterface;
 
@@ -13,7 +13,7 @@ interface QueuedLoggerInterface extends LoggerInterface
     /**
      * Команда для для принудительной записи данных в лог.
      *
-     * @return \marvin255\bxloger\log\QueuedLoggerInterface
+     * @return \marvin255\bxlogger\log\QueuedLoggerInterface
      */
     public function flush();
 
@@ -23,7 +23,7 @@ interface QueuedLoggerInterface extends LoggerInterface
      *
      * @param bool $isQueueSwitchedOn
      *
-     * @return \marvin255\bxloger\log\QueuedLoggerInterface
+     * @return \marvin255\bxlogger\log\QueuedLoggerInterface
      */
     public function changeQueueUsageStatus($isQueueSwitchedOn);
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace marvin255\bxloger;
+namespace marvin255\bxlogger;
 
-use marvin255\bxloger\log\QueuedLoggerInterface;
+use marvin255\bxlogger\log\QueuedLoggerInterface;
 
 /**
  * Менеджер событий для данного модуля.
@@ -15,10 +15,10 @@ class EventManager
      */
     public static function onAfterEpilog()
     {
-        $loger = Log::get();
+        $logger = Log::get();
 
-        if ($loger && ($loger instanceof QueuedLoggerInterface)) {
-            $loger->flush();
+        if ($logger && ($logger instanceof QueuedLoggerInterface)) {
+            $logger->flush();
         }
     }
 }

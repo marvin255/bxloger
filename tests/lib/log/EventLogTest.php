@@ -1,12 +1,12 @@
 <?php
 
-namespace marvin255\bxloger\tests\log;
+namespace marvin255\bxlogger\tests\log;
 
-use marvin255\bxloger\log\EventLog;
+use marvin255\bxlogger\log\EventLog;
 use Psr\Log\LogLevel;
 use CEventLog;
 
-class EventLogTest extends \marvin255\bxloger\tests\BaseCase
+class EventLogTest extends \marvin255\bxlogger\tests\BaseCase
 {
     public function testEmergency()
     {

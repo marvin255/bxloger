@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger\installer;
+namespace marvin255\bxlogger\installer;
 
 use Composer\Script\Event;
 use Composer\Factory;
@@ -27,7 +27,7 @@ class Composer
      *
      * @var string
      */
-    protected static $module = 'bxloger';
+    protected static $module = 'bxlogger';
 
     /**
      * Возвращает массив вида "путь до папки бибилиотеки" => "путь для установки".

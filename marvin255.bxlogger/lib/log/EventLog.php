@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\bxloger\log;
+namespace marvin255\bxlogger\log;
 
 use Psr\Log\AbstractLogger;
 use CEventLog;

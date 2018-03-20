@@ -7,7 +7,7 @@ use Bitrix\Main\EventManager;
 
 Loc::loadMessages(__FILE__);
 
-class marvin255_bxloger extends CModule
+class marvin255_bxlogger extends CModule
 {
     /**
      * @inheritdoc
@@ -23,11 +23,11 @@ class marvin255_bxloger extends CModule
             $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
         }
 
-        $this->MODULE_ID = 'marvin255.bxloger';
-        $this->MODULE_NAME = Loc::getMessage('BX_LOGER_MODULE_NAME');
-        $this->MODULE_DESCRIPTION = Loc::getMessage('BX_LOGER_MODULE_DESCRIPTION');
+        $this->MODULE_ID = 'marvin255.bxlogger';
+        $this->MODULE_NAME = Loc::getMessage('BX_LOGGER_MODULE_NAME');
+        $this->MODULE_DESCRIPTION = Loc::getMessage('BX_LOGGER_MODULE_DESCRIPTION');
         $this->MODULE_GROUP_RIGHTS = 'N';
-        $this->PARTNER_NAME = Loc::getMessage('BX_LOGER_MODULE_PARTNER_NAME');
+        $this->PARTNER_NAME = Loc::getMessage('BX_LOGGER_MODULE_PARTNER_NAME');
     }
 
     /**
