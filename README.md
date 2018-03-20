@@ -4,7 +4,7 @@
 [![License](https://poser.pugx.org/marvin255/bxlogger/license.svg)](https://packagist.org/packages/marvin255/bxlogger)
 [![Build Status](https://travis-ci.org/marvin255/bxlogger.svg?branch=master)](https://travis-ci.org/marvin255/bxlogger)
 
-PSR-3 совместимый логгера для 1С-Битрикс "Управление сайтом".
+PSR-3 совместимый логгер для 1С-Битрикс "Управление сайтом".
 
 
 
